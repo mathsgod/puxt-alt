@@ -1,8 +1,8 @@
-user index
+{{tabs}}
 <?php
 
 return [
-    "get" => function () {
-       
+    "get" => function ($context) {
+        $this->tabs = $context->alt->createTab();
     }
 ];

@@ -1,6 +1,4 @@
 <?php
-
-
 return function ($options) {
 
     $this->puxt->config["head"]["base"] = ["href" => "/"];
@@ -28,11 +26,20 @@ return function ($options) {
     $this->puxt->config["body_attrs"][] = "sidebar-mini";
 
     $this->puxt->hook('ready', function ($puxt) {
+
+        $puxt->context->alt = new ALT();
+        
         $this->addLayout("modules/alt-puxt/layouts/default", "default");
 
-        $file = __DIR__ . "/pages/" . $puxt->context->route->path . "index.php";
-        if (file_exists($file)) {
-            $this->puxt->config["dir"]["pages"] = "modules/alt-puxt/pages";
+        $files[] = __DIR__ . "/pages/" . $puxt->context->route->path . "index.php";
+        $files[] = __DIR__ . "/pages/" . $puxt->context->route->path . "/index.php";
+        $files[] = __DIR__ . "/pages/" . $puxt->context->route->path . ".php";
+
+        foreach ($files as $file) {
+            if (file_exists($file)) {
+                $this->puxt->config["dir"]["pages"] = "modules/alt-puxt/pages";
+                break;
+            }
         }
     });
 };
