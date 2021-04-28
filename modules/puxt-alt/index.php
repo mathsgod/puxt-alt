@@ -28,8 +28,8 @@ return function ($options) {
     $this->puxt->hook('ready', function ($puxt) {
 
         $puxt->context->alt = new ALT();
-        
-        $this->addLayout("modules/alt-puxt/layouts/default", "default");
+
+        $this->addLayout("modules/puxt-alt/layouts/default", "default");
 
         $files[] = __DIR__ . "/pages/" . $puxt->context->route->path . "index.php";
         $files[] = __DIR__ . "/pages/" . $puxt->context->route->path . "/index.php";
@@ -37,7 +37,7 @@ return function ($options) {
 
         foreach ($files as $file) {
             if (file_exists($file)) {
-                $this->puxt->config["dir"]["pages"] = "modules/alt-puxt/pages";
+                $this->puxt->config["dir"]["pages"] = "modules/puxt-alt/pages";
                 break;
             }
         }

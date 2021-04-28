@@ -2,6 +2,6 @@
 
 return [
     "modules" => [
-        "alt-puxt"
+        "puxt-alt"
     ]
 ];
