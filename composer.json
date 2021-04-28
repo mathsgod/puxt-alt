@@ -1,0 +1,25 @@
+{
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../puxt"
+        }
+    ],
+    "name": "mathsgod/alt-puxt",
+    "description": "alt framework",
+    "type": "project",
+    "require": {
+        "mathsgod/puxt": "dev-main"
+    },
+    "authors": [
+        {
+            "name": "Raymond Chong",
+            "email": "mathsgod@yahoo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "": "class/"
+        }
+    }
+}
