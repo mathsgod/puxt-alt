@@ -21,4 +21,9 @@ class ALT extends PUXT\Context
         $rt = new RTable();
         return $rt;
     }
+
+    public function isLogined()
+    {
+        return true;
+    }
 }
