@@ -13,7 +13,7 @@ class ALT extends PUXT\Context
 
     public function createTab()
     {
-        return "tab";
+        return new \App\UI\Tab();
     }
 
     public function createRTable()

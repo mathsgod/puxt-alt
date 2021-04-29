@@ -29,7 +29,6 @@ export default {
 
     for (let tab of tabs) {
       tab.$on("selected", (e) => {
-          
         console.log(e);
       });
     }

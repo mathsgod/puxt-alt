@@ -58,7 +58,7 @@ return [
         "bodyAttrs" => ["class" => "hold-transition login-page"]
     ], "get" => function (ALT $context) {
         if ($context->isLogined()) {
-            //header("location: Dashboard");
+            header("location: Dashboard");
         }
     }
 ];

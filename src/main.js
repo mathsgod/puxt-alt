@@ -36,10 +36,12 @@ Vue.component("r-table-dropdown-item", RTableDropdownItem);
 
 Vue.component("vue", () => import("./vue"));
 
+Vue.component("alt-tabs", () => import("./alt-tabs"));
+Vue.component("alt-tab", () => import("./alt-tab"));
 
 
 let init_vue = function (element) {
-  var nodes = element.querySelectorAll("r-table, card");
+  var nodes = element.querySelectorAll("r-table, card, vue, alt-tabs");
   nodes.forEach(node => {
     new Vue({
       el: node
@@ -57,5 +59,5 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(document.body, { attributes: false, childList: true, subtree: true });
   init_vue(document);
 
-  
+
 });
