@@ -1,5 +1,6 @@
 <?php
 
+use ALT\RTable;
 
 class ALT extends PUXT\Context
 {
@@ -17,6 +18,7 @@ class ALT extends PUXT\Context
 
     public function createRTable()
     {
-        return "rTable";
+        $rt = new RTable();
+        return $rt;
     }
 }

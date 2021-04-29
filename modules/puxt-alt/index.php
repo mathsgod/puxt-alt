@@ -17,20 +17,35 @@ return function ($options) {
     ];
     $this->puxt->config["head"]["link"][] = [
         "rel" => "stylesheet",
-        "href" => "dist/css/adminlte.min.css"
+        "href" => "alt/css/adminlte.min.css"
+    ];
+
+    $this->puxt->config["head"]["link"][] = [
+        "rel" => "stylesheet",
+        "href" => "css/element-ui/index.css"
+    ];
+
+    $this->puxt->config["head"]["link"][] = [
+        "rel" => "stylesheet",
+        "href" => "css/main.css"
     ];
 
 
     $this->puxt->config["head"]["script"][] = ["src" => "plugins/jquery/jquery.min.js", "defer" => true];
     $this->puxt->config["head"]["script"][] = ["src" => "plugins/bootstrap/js/bootstrap.bundle.min.js", "defer" => true];
-    $this->puxt->config["head"]["script"][] = ["src" => "dist/js/adminlte.min.js", "defer" => true];
+    $this->puxt->config["head"]["script"][] = ["src" => "alt/js/adminlte.min.js", "defer" => true];
+    $this->puxt->config["head"]["script"][] = ["src" => "dist/puxt-alt.umd.min.js", "defer" => true];
+    $this->puxt->config["head"]["script"][] = ["src" => "plugins/vue/vue.js"];
+
+
+
 
     $this->puxt->config["body_attrs"][] = "hold-transition";
     $this->puxt->config["body_attrs"][] = "sidebar-mini";
 
     $this->puxt->hook('ready', function ($puxt) {
 
-        
+
         $alt = $puxt->context = new ALT($puxt->context);
         $alt->db = $puxt->context->db;
         \App\Core\Model::$_db = $alt->db;
