@@ -34,8 +34,9 @@ return function ($options) {
     $this->puxt->config["head"]["script"][] = ["src" => "plugins/jquery/jquery.min.js", "defer" => true];
     $this->puxt->config["head"]["script"][] = ["src" => "plugins/bootstrap/js/bootstrap.bundle.min.js", "defer" => true];
     $this->puxt->config["head"]["script"][] = ["src" => "alt/js/adminlte.min.js", "defer" => true];
-    $this->puxt->config["head"]["script"][] = ["src" => "dist/puxt-alt.umd.min.js", "defer" => true];
+
     $this->puxt->config["head"]["script"][] = ["src" => "plugins/vue/vue.js"];
+    $this->puxt->config["head"]["script"][] = ["src" => "dist/puxt-alt.umd.js"];
 
 
 

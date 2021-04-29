@@ -46,11 +46,16 @@ let init_vue = function (element) {
     });
   });
 }
-let observer = new MutationObserver(mutationList => {
-  mutationList.forEach(record => {
-    init_vue(record.target);
-  });
-});
-observer.observe(document.body, { attributes: false, childList: true, subtree: true });
-init_vue(document);
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("content loaded");
 
+  let observer = new MutationObserver(mutationList => {
+    mutationList.forEach(record => {
+      init_vue(record.target);
+    });
+  });
+  observer.observe(document.body, { attributes: false, childList: true, subtree: true });
+  init_vue(document);
+
+  
+});
