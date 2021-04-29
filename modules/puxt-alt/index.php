@@ -1,4 +1,7 @@
 <?php
+
+use App\Model;
+
 return function ($options) {
 
     $this->puxt->config["head"]["base"] = ["href" => "/"];
@@ -27,7 +30,11 @@ return function ($options) {
 
     $this->puxt->hook('ready', function ($puxt) {
 
-        $puxt->context->alt = new ALT();
+        
+        $alt = $puxt->context = new ALT($puxt->context);
+        $alt->db = $puxt->context->db;
+        \App\Core\Model::$_db = $alt->db;
+
 
         $this->addLayout("modules/puxt-alt/layouts/default", "default");
 

@@ -9,7 +9,9 @@
     "description": "alt framework",
     "type": "project",
     "require": {
-        "mathsgod/puxt": "dev-main"
+        "mathsgod/puxt": "dev-main",
+        "hostlink/puxt-db": "^1.0",
+        "mathsgod/alt-app-core": "^1.4"
     },
     "authors": [
         {

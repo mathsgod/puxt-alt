@@ -2,7 +2,6 @@
 <?php
 
 return [
-    "get" => function ($context) {
-        $this->tabs = $context->alt->createTab();
+    "get" => function (ALT $context) {
     }
 ];
