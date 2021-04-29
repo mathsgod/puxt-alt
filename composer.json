@@ -12,7 +12,8 @@
         "mathsgod/puxt": "dev-main",
         "hostlink/puxt-db": "^1.0",
         "mathsgod/alt-app-core": "^1.4",
-        "mathsgod/p-query": "^2.4"
+        "mathsgod/p-query": "^2.4",
+        "symfony/yaml": "^5.2"
     },
     "authors": [
         {

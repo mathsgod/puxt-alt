@@ -54,15 +54,10 @@ return function ($options) {
 
         $this->addLayout("modules/puxt-alt/layouts/default", "default");
 
-        $files[] = __DIR__ . "/pages/" . $puxt->context->route->path . "index.php";
-        $files[] = __DIR__ . "/pages/" . $puxt->context->route->path . "/index.php";
-        $files[] = __DIR__ . "/pages/" . $puxt->context->route->path . ".php";
+        $p = explode("/", $puxt->context->route->path);
+        if (in_array($p[0], ["User", "UsrGroup", "System"])) {
 
-        foreach ($files as $file) {
-            if (file_exists($file)) {
-                $this->puxt->config["dir"]["pages"] = "modules/puxt-alt/pages";
-                break;
-            }
+            $this->puxt->config["dir"]["pages"] = "modules/puxt-alt/pages";
         }
     });
 };

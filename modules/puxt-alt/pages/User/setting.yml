@@ -1,0 +1,4 @@
+class: App\User
+show_create: true
+icon: fa fa-user fa-fw
+group: System

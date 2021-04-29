@@ -26,4 +26,10 @@ class ALT extends PUXT\Context
     {
         return true;
     }
+
+    public function object()
+    {
+        //$this->params->id
+        //        $this->route
+    }
 }
