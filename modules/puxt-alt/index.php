@@ -55,7 +55,7 @@ return function ($options) {
         $this->addLayout("modules/puxt-alt/layouts/default", "default");
 
         $p = explode("/", $puxt->context->route->path);
-        if (in_array($p[0], ["User", "UsrGroup", "System"])) {
+        if (in_array($p[0], ["User", "UserGroup", "System"])) {
 
             $this->puxt->config["dir"]["pages"] = "modules/puxt-alt/pages";
         }
