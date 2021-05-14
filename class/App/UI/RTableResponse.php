@@ -2,11 +2,13 @@
 
 namespace App\UI;
 
+use ALT;
 use \Box\Spout\Writer\WriterFactory;
 use \Box\Spout\Common\Type;
 
 use JsonSerializable;
 use Exception;
+use Psr\Http\Message\RequestInterface;
 use Vue\Scriptable;
 
 class Row
@@ -52,16 +54,18 @@ class RTableResponse implements JsonSerializable
 
     public $columns = [];
 
-    public function __construct()
+    public function __construct(ALT $context, $query)
     {
-        $this->draw = intval($_GET["draw"]);
-        $this->request["columns"] = $_GET["columns"];
-        $this->order = $_GET["order"];
-        $this->page = intval($_GET["page"]);
-        $this->length = intval($_GET["length"]);
-        $this->search = $_GET["search"];
+
+        $this->context = $context;
+        $this->draw = intval($query["draw"]);
+        $this->request["columns"] = $query["columns"];
+        $this->order = $query["order"];
+        $this->page = intval($query["page"]);
+        $this->length = intval($query["length"]);
+        $this->search = $query["search"];
         $this->row = new Row();
-        $this->search = $_GET["search"] ?? [];
+        $this->search = $query["search"] ?? [];
 
         foreach ($this->request["columns"] as $column) {
             if ($column == "__view__") {
@@ -143,7 +147,8 @@ class RTableResponse implements JsonSerializable
                 }
                 return;
             }
-            if (!$obj->canRead()) {
+
+            if (!$obj->canReadBy($this->context->user)) {
                 return;
             }
             $a = html("a")->class("btn btn-xs btn-info")->href($obj->uri("v"));
@@ -224,7 +229,6 @@ class RTableResponse implements JsonSerializable
         }
 
 
-
         $data = [];
         foreach ($source as $obj) {
             $d = [];
@@ -236,6 +240,7 @@ class RTableResponse implements JsonSerializable
             } else {
                 $object_vars = get_object_vars($obj);
             }
+
 
             foreach ($this->request["columns"] as $k => $c) {
                 try {
@@ -255,11 +260,7 @@ class RTableResponse implements JsonSerializable
                         } elseif ($col->type == "html") {
 
                             $content = $col->getData($obj, $c);
-                            if ($content instanceof Scriptable) {
-                                $d[$c] = ["type" => "vue", "content" => (string) $content];
-                            } else {
-                                $d[$c] = ["type" => "html", "content" => (string) $content];
-                            }
+                            $d[$c] = ["type" => "html", "content" => (string) $content];
                         } elseif ($col->type == "vue") {
                             $content = $col->getData($obj, $c);
                             $d[$c] = ["type" => "vue", "content" => (string) $content];
@@ -312,16 +313,20 @@ class RTableResponse implements JsonSerializable
     {
         $source = clone $this->source;
 
-        foreach ($this->order as $o) {
-            $column = $this->_columns[$o["name"]];
-            if ($column->order) {
-                $source->orderBy($column->order . " " . $o["dir"]);
-            } elseif ($column->sortCallback) {
-                $source->orderBy(call_user_func($column->sortCallback) . " " . $o["dir"]);
-            } else {
-                $source->orderBy([$o["name"] => $o["dir"]]);
+        if (is_array($this->order)) {
+            foreach ($this->order as $o) {
+                $column = $this->_columns[$o["name"]];
+                if ($column->order) {
+                    $source->orderBy($column->order . " " . $o["dir"]);
+                } elseif ($column->sortCallback) {
+                    $source->orderBy(call_user_func($column->sortCallback) . " " . $o["dir"]);
+                } else {
+                    $source->orderBy([$o["name"] => $o["dir"]]);
+                }
             }
         }
+
+
 
 
         foreach ($this->search as $k => $c) {

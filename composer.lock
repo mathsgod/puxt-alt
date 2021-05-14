@@ -352,16 +352,16 @@
         },
         {
             "name": "mathsgod/r-db",
-            "version": "3.11.0",
+            "version": "3.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mathsgod/r-db.git",
-                "reference": "e32710150d473f5916c325005bb4af77ab689aa9"
+                "reference": "1d987bd3e2cbab8e50fdf0041752a39ecc8ac1b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mathsgod/r-db/zipball/e32710150d473f5916c325005bb4af77ab689aa9",
-                "reference": "e32710150d473f5916c325005bb4af77ab689aa9",
+                "url": "https://api.github.com/repos/mathsgod/r-db/zipball/1d987bd3e2cbab8e50fdf0041752a39ecc8ac1b7",
+                "reference": "1d987bd3e2cbab8e50fdf0041752a39ecc8ac1b7",
                 "shasum": ""
             },
             "require": {
@@ -392,9 +392,9 @@
             "description": "raymond framework db",
             "support": {
                 "issues": "https://github.com/mathsgod/r-db/issues",
-                "source": "https://github.com/mathsgod/r-db/tree/3.11.0"
+                "source": "https://github.com/mathsgod/r-db/tree/3.12.2"
             },
-            "time": "2021-04-08T04:06:46+00:00"
+            "time": "2021-05-14T10:06:47+00:00"
         },
         {
             "name": "phpmailer/phpmailer",

@@ -43,7 +43,7 @@ class Tab extends Card
         $this->classList[] = "my_tab";
     }
 
-    public function collapsible()
+    public function collapsible(bool $collapsible)
     {
         return;
         $li = p("li")->addClass("pull-right");
@@ -51,7 +51,7 @@ class Tab extends Card
         p($this->navs)->append($li);
     }
 
-    public function pinable()
+    public function  pinable(bool $pinable)
     {
         return;
         $li = p("li")->addClass("pull-right");

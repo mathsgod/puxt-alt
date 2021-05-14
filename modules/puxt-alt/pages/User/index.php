@@ -1,9 +1,7 @@
-{{tab|raw}}
-
 <alt-tabs>
-    <alt-tab label="All User" src="User/list"></alt-tab>
-    <alt-tab label="All User2" src="User/list_1"></alt-tab>
-    <alt-tab label="All User3" src="User/list_2"></alt-tab>
+    <alt-tab label="All User" link="User/list" active></alt-tab>
+    <alt-tab label="All User2" link="User/list_1"></alt-tab>
+    <alt-tab label="All User3" link="User/list_2"></alt-tab>
 </alt-tabs>
 
 <?php

@@ -1,5 +1,9 @@
 import Vue from 'vue'
 
+import VueResource from 'vue-resource'
+Vue.use(VueResource);
+
+
 import Element from 'element-ui';
 Vue.use(Element, {
   size: "small",

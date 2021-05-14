@@ -2,6 +2,7 @@
   <li class="nav-item">
     <a
       class="nav-link"
+      :class="{ active: active }"
       data-toggle="pill"
       href="javascript:void(0)"
       role="tab"
@@ -14,11 +15,12 @@
 export default {
   props: {
     label: String,
-    src: String,
+    link: String,
+    active: Boolean,
   },
   methods: {
     onClick() {
-      this.$emit("selected", this.src);
+      this.$emit("selected", this.link);
     },
   },
 };

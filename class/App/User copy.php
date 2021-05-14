@@ -2,10 +2,9 @@
 
 namespace App;
 
-use ALT\Model;
 use Google\Authenticator\GoogleAuthenticator;
 
-class User extends Core\User implements Model
+class User extends Core\User
 {
     /**
      * @var int
@@ -15,8 +14,8 @@ class User extends Core\User implements Model
     public $first_name;
 
     use ModelTrait {
-        canUpdateBy as protected canUpdate2;
-        canDeleteBy as protected canDelete2;
+        canUpdate as protected canUpdate2;
+        canDelete as protected canDelete2;
     }
 
     public function __construct($id = null)
@@ -39,8 +38,9 @@ class User extends Core\User implements Model
         return json_decode($this->setting, true) ?? [];
     }
 
-    public function canReadBy(User $user)
+    public function canRead(): bool
     {
+        $user = self::$_app->user;
         if ($user->isAdmin()) { //admin can update all
             return true;
         }
@@ -61,8 +61,9 @@ class User extends Core\User implements Model
         return $this->canUpdate2();
     }
 
-    public function canUpdateBy(User $user)
+    public function canUpdate(): bool
     {
+        $user = self::$_app->user;
         if ($user->isAdmin()) { //admin can update all
             return true;
         }
@@ -83,11 +84,14 @@ class User extends Core\User implements Model
         return $this->canUpdate2();
     }
 
-    public function canDeleteBy(User $user)
+    public function canDelete(): bool
     {
+        $user = self::$_app->user;
         if ($this->isGuest()) { //cannot delete guest
             return false;
         }
+
+
         if ($user->user_id == $this->user_id) { //cannot delete myself
             return false;
         }

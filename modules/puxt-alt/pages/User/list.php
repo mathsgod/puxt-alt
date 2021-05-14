@@ -1,18 +1,24 @@
 {{table|raw}}
 <?php
+
+use App\User;
+
 return [
     "get" => function (ALT $context) {
-        //if (!$_GET["data"]) {
         $rt = $context->createRTable();
-        $rt->add("Name", "name");
+        $rt->setAttribute("remote", "User/list?_action=ds");
+        $rt->addView();
+        $rt->add("Username", "username");
+        $rt->add("First name", "first_name");
+        $rt->add("Last name", "last_name");
         $this->table = $rt;
-        //}else{
-        //    return ["data"];
-        //}
     },
     "action" => [
-        "ds" => function () {
-            return ["A"];
+        "ds" => function (ALT $context) {
+
+            $rt = $context->createRTableResponse();
+            $rt->source = User::Query();
+            return $rt;
         }
     ]
 ];

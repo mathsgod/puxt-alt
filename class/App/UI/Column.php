@@ -2,6 +2,7 @@
 
 namespace App\UI;
 
+use ALT\Func;
 use JsonSerializable;
 use Closure;
 
@@ -302,18 +303,20 @@ class Column implements JsonSerializable
         $result = $object;
         $last_obj = $object;
         foreach ($this->descriptor as $descriptor) {
-            $result = \My\Func::_($descriptor)->call($result);
+            $result = Func::Create($descriptor)->call($result);
             if (is_object($result)) {
                 $last_obj = $result;
             }
         }
+
+
 
         if ($this->format) {
             if (is_string($this->format) && function_exists($this->format)) {
                 $func = $this->format;
                 $result = $func($result);
             } else {
-                $result = \My\Func::_($this->format)->call($result);
+                $result = Func::Create($this->format)->call($result);
             }
         }
 
